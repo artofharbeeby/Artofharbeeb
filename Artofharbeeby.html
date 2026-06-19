@@ -1,0 +1,1090 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artofharbeeby | Custom VRChat Avatar Creator</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cyber: {
+                            black: '#07030d',
+                            darkGray: '#120b1e',
+                            purple: '#a855f7',
+                            darkPurple: '#6b21a8',
+                            lightPurple: '#d8b4fe',
+                            neonGlow: '#c084fc',
+                            accent: '#1e1135'
+                        }
+                    },
+                    boxShadow: {
+                        'neon-sm': '0 0 10px rgba(168, 85, 247, 0.2)',
+                        'neon-md': '0 0 20px rgba(168, 85, 247, 0.4)',
+                        'neon-lg': '0 0 35px rgba(168, 85, 247, 0.6)',
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #07030d;
+        }
+        h1, h2, h3, h4, .font-heading {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .cyber-grid {
+            background-image: linear-gradient(rgba(168, 85, 247, 0.05) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(168, 85, 247, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+        .glow-border {
+            position: relative;
+        }
+        .glow-border::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            padding: 1px;
+            background: linear-gradient(to bottom right, #a855f7, transparent, #6b21a8);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+        }
+
+        /* Portfolio Item 7 Smooth Animation Sequence on Hover */
+        .portfolio-7-img-1 { animation: cycle1 9s infinite; }
+        .portfolio-7-img-2 { animation: cycle2 9s infinite; }
+        .portfolio-7-img-3 { animation: cycle3 9s infinite; }
+
+        @keyframes cycle1 {
+            0%, 28% { opacity: 1; }
+            33%, 95% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        @keyframes cycle2 {
+            0%, 28% { opacity: 0; }
+            33%, 61% { opacity: 1; }
+            66%, 100% { opacity: 0; }
+        }
+        @keyframes cycle3 {
+            0%, 61% { opacity: 0; }
+            66%, 95% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+    </style>
+</head>
+<body class="text-gray-200 min-h-screen relative overflow-x-hidden selection:bg-cyber-purple selection:text-white">
+
+    <!-- Cyberpunk Grid Overlay -->
+    <div class="fixed inset-0 cyber-grid pointer-events-none z-0"></div>
+    <div class="fixed top-0 left-1/4 w-96 h-96 bg-cyber-purple/10 rounded-full blur-[120px] pointer-events-none z-0 animate-pulse" style="animation-duration: 8s;"></div>
+    <div class="fixed bottom-0 right-1/4 w-[500px] h-[500px] bg-cyber-darkPurple/15 rounded-full blur-[150px] pointer-events-none z-0 animate-pulse" style="animation-duration: 12s;"></div>
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="sticky top-0 z-50 bg-cyber-black/80 backdrop-blur-md border-b border-cyber-purple/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="#home" class="flex items-center space-x-2 group">
+                        <span class="text-2xl font-bold tracking-wider text-white font-heading group-hover:text-cyber-purple transition-colors">
+                            ART<span class="text-cyber-purple group-hover:text-white transition-colors">OF</span>HARBEEBY
+                        </span>
+                    </a>
+                </div>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex space-x-8 text-sm font-medium">
+                    <a href="#home" class="text-gray-300 hover:text-cyber-purple transition-colors py-2">Home</a>
+                    <a href="#portfolio" class="text-gray-300 hover:text-cyber-purple transition-colors py-2">Portfolio</a>
+                    <a href="#services" class="text-gray-300 hover:text-cyber-purple transition-colors py-2">Services</a>
+                    <a href="#reviews" class="text-gray-300 hover:text-cyber-purple transition-colors py-2">Reviews</a>
+                    <a href="#about" class="text-gray-300 hover:text-cyber-purple transition-colors py-2">About</a>
+                    <a href="#terms" class="text-gray-300 hover:text-cyber-purple transition-colors py-2">Terms</a>
+                    <a href="#faq" class="text-gray-300 hover:text-cyber-purple transition-colors py-2">FAQ</a>
+                    <a href="#contact" class="text-gray-300 hover:text-cyber-purple transition-colors py-2">Contact</a>
+                </nav>
+
+                <!-- CTA Button -->
+                <div class="hidden md:flex items-center">
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=Artofharbeeby@gmail.com" target="_blank" rel="noopener noreferrer" class="glow-border bg-cyber-accent hover:bg-cyber-purple/20 px-5 py-2.5 rounded-md text-sm font-semibold tracking-wide text-white transition-all duration-300 flex items-center gap-2 hover:shadow-neon-sm">
+                        <i class="fa-solid fa-envelope text-base"></i> Contact Me
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-button" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-cyber-accent focus:outline-none transition-colors" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <i id="menu-icon-open" class="fa-solid fa-bars text-xl"></i>
+                        <i id="menu-icon-close" class="fa-solid fa-xmark text-xl hidden"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-cyber-black/95 border-b border-cyber-purple/20 backdrop-blur-lg">
+            <div class="px-2 pt-2 pb-4 space-y-1 sm:px-3 text-center">
+                <a href="#home" class="mobile-nav-link block px-3 py-3 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-cyber-purple/20 transition-all">Home</a>
+                <a href="#portfolio" class="mobile-nav-link block px-3 py-3 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-cyber-purple/20 transition-all">Portfolio</a>
+                <a href="#services" class="mobile-nav-link block px-3 py-3 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-cyber-purple/20 transition-all">Services</a>
+                <a href="#reviews" class="mobile-nav-link block px-3 py-3 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-cyber-purple/20 transition-all">Reviews</a>
+                <a href="#about" class="mobile-nav-link block px-3 py-3 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-cyber-purple/20 transition-all">About</a>
+                <a href="#terms" class="mobile-nav-link block px-3 py-3 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-cyber-purple/20 transition-all">Terms</a>
+                <a href="#faq" class="mobile-nav-link block px-3 py-3 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-cyber-purple/20 transition-all">FAQ</a>
+                <a href="#contact" class="mobile-nav-link block px-3 py-3 rounded-md text-base font-medium text-gray-300 hover:text-white hover:bg-cyber-purple/20 transition-all">Contact</a>
+                <div class="pt-4 pb-2 border-t border-cyber-purple/10">
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=Artofharbeeby@gmail.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center w-full px-5 py-3 rounded-md bg-cyber-purple text-base font-semibold text-white hover:bg-cyber-darkPurple transition-colors gap-2">
+                        <i class="fa-solid fa-envelope"></i> Contact Me
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- IMPORTANT NOTICE PANEL -->
+    <div class="relative z-10 bg-gradient-to-r from-cyber-black via-cyber-darkPurple/30 to-cyber-black border-y border-cyber-purple/30 py-4 px-4">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-3 text-center sm:text-left">
+            <span class="flex items-center justify-center w-8 h-8 rounded-full bg-cyber-purple/20 border border-cyber-purple/50 text-cyber-lightPurple shrink-0 animate-pulse">
+                <i class="fa-solid fa-triangle-exclamation text-sm"></i>
+            </span>
+            <p class="text-sm md:text-base font-medium text-gray-100 max-w-4xl tracking-wide">
+                <span class="text-cyber-purple font-bold">IMPORTANT NOTICE:</span> 
+                I only accept custom commission requests. I do not sell or resell pre-made avatars. Every project is created or customized specifically for each client.
+            </p>
+        </div>
+    </div>
+
+    <!-- MAIN CONTAINER -->
+    <main class="relative z-10">
+
+        <!-- HERO SECTION -->
+        <section id="home" class="relative pt-8 pb-20 md:py-32 overflow-hidden">
+            <!-- Subtle hero background graphic from postimg -->
+            <div class="absolute inset-0 bg-cover bg-center opacity-10 pointer-events-none mix-blend-lighten" style="background-image: url('https://i.postimg.cc/wBLKNb3F/ae55923b-7d74-4cab-a435-91349ebeaeb4.jpg'); filter: blur(4px);"></div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <!-- Text Content (Cols 1-7) -->
+                    <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                        <!-- Commission Status Indicator -->
+                        <div class="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-cyber-purple/10 border border-cyber-purple/30 text-xs font-semibold tracking-wider text-cyber-lightPurple uppercase">
+                            <span class="w-2.5 h-2.5 rounded-full bg-green-500 animate-ping"></span>
+                            <span class="w-2.5 h-2.5 rounded-full bg-green-500 absolute"></span>
+                            Commission Status: Open
+                            <span class="text-gray-400 ml-1">|</span>
+                            <span class="text-white">Available Slots: 3/5</span>
+                        </div>
+
+                        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-none">
+                            Artofharbeeby
+                        </h1>
+                        <p class="text-lg sm:text-xl lg:text-2xl font-semibold tracking-wide text-cyber-purple font-heading uppercase">
+                            Custom VRChat Avatar Creator
+                        </p>
+                        <p class="text-gray-400 text-base sm:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                            Custom avatars, avatar edits, retextures, rigging, VRChat setup, and custom character creation. Handcrafted to elevate your identity in the virtual space.
+                        </p>
+
+                        <!-- Call To Actions -->
+                        <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=Artofharbeeby@gmail.com" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto text-center px-8 py-4 bg-cyber-purple hover:bg-cyber-darkPurple text-white font-bold rounded-lg shadow-neon-sm hover:shadow-neon-md transition-all duration-300 flex items-center justify-center gap-3">
+                                <i class="fa-solid fa-envelope text-lg"></i> Request a Commission
+                            </a>
+                            <a href="#portfolio" class="w-full sm:w-auto text-center px-8 py-4 bg-cyber-accent/80 hover:bg-cyber-accent text-gray-300 hover:text-white font-bold rounded-lg border border-cyber-purple/30 transition-all duration-300">
+                                View Portfolio
+                            </a>
+                        </div>
+
+                        <!-- Social Shortcuts -->
+                        <div class="pt-6 flex justify-center lg:justify-start gap-5 text-gray-400 text-lg">
+                            <a href="https://www.twitch.tv/Artofharbeeby" target="_blank" rel="noopener noreferrer" class="hover:text-cyber-purple transition-colors"><i class="fa-brands fa-twitch"></i></a>
+                            <a href="https://x.com/harbeebyy0" target="_blank" rel="noopener noreferrer" class="hover:text-cyber-purple transition-colors"><i class="fa-brands fa-x-twitter"></i></a>
+                            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=Artofharbeeby@gmail.com" target="_blank" rel="noopener noreferrer" class="hover:text-cyber-purple transition-colors"><i class="fa-solid fa-envelope"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Hero Visual (Cols 8-12) -->
+                    <div class="lg:col-span-5 relative flex justify-center">
+                        <div class="relative w-72 h-72 sm:w-96 sm:h-96 lg:w-full lg:h-[450px] rounded-2xl overflow-hidden shadow-neon-md border border-cyber-purple/40 bg-cyber-accent flex items-center justify-center group">
+                            <img src="https://i.postimg.cc/wBLKNb3F/ae55923b-7d74-4cab-a435-91349ebeaeb4.jpg" alt="VRChat Avatar Showcase" class="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700">
+                            <!-- Overlay design elements -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-cyber-black via-transparent to-transparent opacity-80"></div>
+                            <div class="absolute bottom-4 left-4 right-4 bg-cyber-black/70 backdrop-blur-md p-4 rounded-lg border border-cyber-purple/20">
+                                <span class="text-xs uppercase tracking-widest text-cyber-purple font-semibold">Featured Work</span>
+                                <h3 class="text-white font-bold text-sm sm:text-base mt-0.5">High Fidelity Cyber Avatar Setup</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICES SECTION -->
+        <section id="services" class="py-20 bg-cyber-darkGray/40 border-y border-cyber-purple/10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Section Header -->
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white uppercase font-heading">
+                        Creation &amp; Development <span class="text-cyber-purple">Services</span>
+                    </h2>
+                    <div class="w-20 h-1 bg-cyber-purple mx-auto mt-4 rounded-full"></div>
+                    <p class="text-gray-400 mt-4">
+                        Professional production pipeline handling everything from concept adaptation to direct upload setup.
+                    </p>
+                </div>
+
+                <!-- Service Cards Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Card 1 -->
+                    <div class="bg-cyber-accent/40 border border-cyber-purple/20 hover:border-cyber-purple/60 p-8 rounded-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-neon-sm flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-lg bg-cyber-purple/10 border border-cyber-purple/40 flex items-center justify-center text-cyber-lightPurple text-xl mb-6">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-3">Custom Avatar Creation</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">
+                                Complete development of original models built entirely to match your character reference sheets and visual guidelines.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Card 2 -->
+                    <div class="bg-cyber-accent/40 border border-cyber-purple/20 hover:border-cyber-purple/60 p-8 rounded-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-neon-sm flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-lg bg-cyber-purple/10 border border-cyber-purple/40 flex items-center justify-center text-cyber-lightPurple text-xl mb-6">
+                                <i class="fa-solid fa-sliders"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-3">Avatar Editing</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">
+                                Modifications, outfit swaps, accessory additions, and optimizations built for pre-existing commercial bases.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Card 3 -->
+                    <div class="bg-cyber-accent/40 border border-cyber-purple/20 hover:border-cyber-purple/60 p-8 rounded-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-neon-sm flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-lg bg-cyber-purple/10 border border-cyber-purple/40 flex items-center justify-center text-cyber-lightPurple text-xl mb-6">
+                                <i class="fa-solid fa-palette"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-3">Retexturing</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">
+                                Custom hand-painted detail work, emission mapping, and PBR channel generation to secure a premium in-game look.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Card 4 -->
+                    <div class="bg-cyber-accent/40 border border-cyber-purple/20 hover:border-cyber-purple/60 p-8 rounded-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-neon-sm flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-lg bg-cyber-purple/10 border border-cyber-purple/40 flex items-center justify-center text-cyber-lightPurple text-xl mb-6">
+                                <i class="fa-solid fa-bone"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-3">Rigging &amp; PhysBones</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">
+                                Smooth armature configurations and fully configured PhysBones settings for hair, ears, tails, clothing, and dynamic props.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Card 5 -->
+                    <div class="bg-cyber-accent/40 border border-cyber-purple/20 hover:border-cyber-purple/60 p-8 rounded-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-neon-sm flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-lg bg-cyber-purple/10 border border-cyber-purple/40 flex items-center justify-center text-cyber-lightPurple text-xl mb-6">
+                                <i class="fa-solid fa-cloud-arrow-up"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-3">VRChat Upload Assistance</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">
+                                Complete Unity package setup and directly uploading the final configured avatar to your official VRChat account.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Card 6 -->
+                    <div class="bg-cyber-accent/40 border border-cyber-purple/20 hover:border-cyber-purple/60 p-8 rounded-xl transition-all duration-300 hover:-translate-y-1 hover:shadow-neon-sm flex flex-col justify-between">
+                        <div>
+                            <div class="w-12 h-12 rounded-lg bg-cyber-purple/10 border border-cyber-purple/40 flex items-center justify-center text-cyber-lightPurple text-xl mb-6">
+                                <i class="fa-solid fa-user-shield"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-white mb-3">Adult Features (18+ Only)</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">
+                                Safe and highly discrete integration of adult content systems, specialized contact setups, and physics configurations.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- PORTFOLIO SECTION -->
+        <section id="portfolio" class="py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Section Header -->
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white uppercase font-heading">
+                        Featured <span class="text-cyber-purple">Portfolio</span>
+                    </h2>
+                    <div class="w-20 h-1 bg-cyber-purple mx-auto mt-4 rounded-full"></div>
+                    <p class="text-gray-400 mt-4 text-sm sm:text-base">
+                        Review a showcase of built-to-order characters, precise asset alignments, and dynamic rigging assets. Click on standard cards to inspect resources, or select portals to launch files.
+                    </p>
+                </div>
+
+                <!-- Filter Controls -->
+                <div class="flex flex-wrap justify-center gap-2 sm:gap-4 mb-12 max-w-2xl mx-auto">
+                    <button class="portfolio-filter-btn px-4 py-2 text-xs sm:text-sm font-semibold rounded-md border border-cyber-purple/30 bg-cyber-purple text-white transition-all" data-category="all">
+                        All Projects
+                    </button>
+                    <button class="portfolio-filter-btn px-4 py-2 text-xs sm:text-sm font-semibold rounded-md border border-cyber-purple/30 bg-cyber-accent text-gray-300 hover:bg-cyber-purple/20 hover:text-white transition-all" data-category="custom">
+                        Custom Avatars
+                    </button>
+                    <button class="portfolio-filter-btn px-4 py-2 text-xs sm:text-sm font-semibold rounded-md border border-cyber-purple/30 bg-cyber-accent text-gray-300 hover:bg-cyber-purple/20 hover:text-white transition-all" data-category="edits">
+                        Avatar Edits
+                    </button>
+                    <button class="portfolio-filter-btn px-4 py-2 text-xs sm:text-sm font-semibold rounded-md border border-cyber-purple/30 bg-cyber-accent text-gray-300 hover:bg-cyber-purple/20 hover:text-white transition-all" data-category="retextures">
+                        Retextures
+                    </button>
+                    <button class="portfolio-filter-btn px-4 py-2 text-xs sm:text-sm font-semibold rounded-md border border-cyber-purple/30 bg-cyber-accent text-gray-300 hover:bg-cyber-purple/20 hover:text-white transition-all" data-category="rigging">
+                        Rigging &amp; Setup
+                    </button>
+                    <button class="portfolio-filter-btn px-4 py-2 text-xs sm:text-sm font-semibold rounded-md border border-cyber-purple/30 bg-cyber-accent text-gray-300 hover:bg-cyber-purple/20 hover:text-white transition-all" data-category="adult">
+                        18+ Projects
+                    </button>
+                </div>
+
+                <!-- Portfolio Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="portfolio-grid">
+                    
+                    <!-- Item 1 (Dual Image Hover) -->
+                    <a href="https://i.postimg.cc/bJ4jzMgy/ev-I3lm-Yhl-DW9H.png" target="_blank" rel="noopener noreferrer" class="portfolio-item block group bg-cyber-accent/30 border border-cyber-purple/10 hover:border-cyber-purple/50 rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-neon-sm" data-category="custom">
+                        <div class="relative aspect-square overflow-hidden bg-cyber-accent">
+                            <!-- Base Image -->
+                            <img src="https://i.postimg.cc/bJ4jzMgy/ev-I3lm-Yhl-DW9H.png" alt="Neo-Cyber Shogun Front View" class="absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-500 ease-in-out group-hover:opacity-0">
+                            <!-- Alternate Image on Hover -->
+                            <img src="https://i.postimg.cc/Y2mHXr2Q/vsa-Yvftg-Gag-G8.png" alt="Neo-Cyber Shogun Alternate Angle" class="absolute inset-0 w-full h-full object-cover object-center opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-100 group-hover:scale-105">
+                            
+                            <div class="absolute top-4 right-4 bg-cyber-black/80 backdrop-blur-md w-10 h-10 rounded-full flex items-center justify-center border border-cyber-purple/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <i class="fa-solid fa-up-right-from-square text-cyber-purple text-xs"></i>
+                            </div>
+                        </div>
+                        <div class="p-6 relative z-10 bg-cyber-accent/30">
+                            <span class="text-xs font-bold text-cyber-purple uppercase tracking-wider">Custom Avatars</span>
+                            <h3 class="text-lg font-bold text-white mt-1">Neo-Cyber Shogun</h3>
+                            <p class="text-gray-400 text-sm mt-2 leading-relaxed">Full design configuration including customizable neon trim and modular weapon mounts.</p>
+                        </div>
+                    </a>
+
+                    <!-- Item 2 (Dual Image Hover) -->
+                    <a href="https://i.postimg.cc/ZYySfbYC/Snap-Insta-to-550684553-18072573884175731-8334110054340478572-n.jpg" target="_blank" rel="noopener noreferrer" class="portfolio-item block group bg-cyber-accent/30 border border-cyber-purple/10 hover:border-cyber-purple/50 rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-neon-sm" data-category="edits">
+                        <div class="relative aspect-square overflow-hidden bg-cyber-accent">
+                            <!-- Base Image -->
+                            <img src="https://i.postimg.cc/ZYySfbYC/Snap-Insta-to-550684553-18072573884175731-8334110054340478572-n.jpg" alt="Synthwave Neon Valkyrie" class="absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-500 ease-in-out group-hover:opacity-0">
+                            <!-- Alternate Image on Hover -->
+                            <img src="https://i.postimg.cc/xTDShwq6/Snap-Insta-to-551312746-18072573917175731-2258689909095771717-n.jpg" alt="Synthwave Neon Valkyrie Pose Angle" class="absolute inset-0 w-full h-full object-cover object-center opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-100 group-hover:scale-105">
+                            
+                            <div class="absolute top-4 right-4 bg-cyber-black/80 backdrop-blur-md w-10 h-10 rounded-full flex items-center justify-center border border-cyber-purple/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <i class="fa-solid fa-up-right-from-square text-cyber-purple text-xs"></i>
+                            </div>
+                        </div>
+                        <div class="p-6 relative z-10 bg-cyber-accent/30">
+                            <span class="text-xs font-bold text-cyber-purple uppercase tracking-wider">Avatar Edits</span>
+                            <h3 class="text-lg font-bold text-white mt-1">Synthwave Valkyrie</h3>
+                            <p class="text-gray-400 text-sm mt-2 leading-relaxed">Modified tactical wear configuration featuring emissive hair shaders and wing accessories.</p>
+                        </div>
+                    </a>
+
+                    <!-- Item 3 (Dual Image Hover) -->
+                    <a href="https://i.postimg.cc/sDdRqk1n/Screenshot-2026-06-18-153520.png" target="_blank" rel="noopener noreferrer" class="portfolio-item block group bg-cyber-accent/30 border border-cyber-purple/10 hover:border-cyber-purple/50 rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-neon-sm" data-category="retextures">
+                        <div class="relative aspect-square overflow-hidden bg-cyber-accent">
+                            <!-- Base Image -->
+                            <img src="https://i.postimg.cc/sDdRqk1n/Screenshot-2026-06-18-153520.png" alt="Urban Combat Android Close-up" class="absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-500 ease-in-out group-hover:opacity-0">
+                            <!-- Alternate Image on Hover -->
+                            <img src="https://i.postimg.cc/zXZ16s3j/Screenshot-2026-06-18-153531.png" alt="Urban Combat Android Full Render" class="absolute inset-0 w-full h-full object-cover object-center opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-100 group-hover:scale-105">
+                            
+                            <div class="absolute top-4 right-4 bg-cyber-black/80 backdrop-blur-md w-10 h-10 rounded-full flex items-center justify-center border border-cyber-purple/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <i class="fa-solid fa-up-right-from-square text-cyber-purple text-xs"></i>
+                            </div>
+                        </div>
+                        <div class="p-6 relative z-10 bg-cyber-accent/30">
+                            <span class="text-xs font-bold text-cyber-purple uppercase tracking-wider">Retextures</span>
+                            <h3 class="text-lg font-bold text-white mt-1">Combat Mech Android</h3>
+                            <p class="text-gray-400 text-sm mt-2 leading-relaxed">Substance-painted metal materials coupled with bespoke decal alignment panels.</p>
+                        </div>
+                    </a>
+
+                    <!-- Item 4 (Dual Image Hover) -->
+                    <a href="https://i.postimg.cc/dt4xTc6d/Screenshot-2026-06-19-130619.png" target="_blank" rel="noopener noreferrer" class="portfolio-item block group bg-cyber-accent/30 border border-cyber-purple/10 hover:border-cyber-purple/50 rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-neon-sm" data-category="rigging">
+                        <div class="relative aspect-square overflow-hidden bg-cyber-accent">
+                            <!-- Base Image -->
+                            <img src="https://i.postimg.cc/dt4xTc6d/Screenshot-2026-06-19-130619.png" alt="Gothic Netrunner Setup View" class="absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-500 ease-in-out group-hover:opacity-0">
+                            <!-- Alternate Image on Hover -->
+                            <img src="https://i.postimg.cc/qvqZsDDg/Screenshot-2026-06-19-130631.png" alt="Gothic Netrunner Expressions Layout" class="absolute inset-0 w-full h-full object-cover object-center opacity-0 transition-opacity duration-500 ease-in-out group-hover:opacity-100 group-hover:scale-105">
+                            
+                            <div class="absolute top-4 right-4 bg-cyber-black/80 backdrop-blur-md w-10 h-10 rounded-full flex items-center justify-center border border-cyber-purple/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <i class="fa-solid fa-up-right-from-square text-cyber-purple text-xs"></i>
+                            </div>
+                        </div>
+                        <div class="p-6 relative z-10 bg-cyber-accent/30">
+                            <span class="text-xs font-bold text-cyber-purple uppercase tracking-wider">Rigging &amp; Setup</span>
+                            <h3 class="text-lg font-bold text-white mt-1">Gothic Netrunner</h3>
+                            <p class="text-gray-400 text-sm mt-2 leading-relaxed">Custom PhysBones hair architecture setup alongside full tracking layout calibration.</p>
+                        </div>
+                    </a>
+
+                    <!-- Item 5 (Google Drive Redirect with custom Visual and Play Button) -->
+                    <a href="https://drive.google.com/file/d/11_NDsD8pgD_3AnWNpvfzz1JtPrAoHE2_/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="portfolio-item block group bg-cyber-accent/40 border border-cyber-purple/20 hover:border-cyber-purple shadow-[inset_0_0_20px_rgba(168,85,247,0.05)] hover:shadow-neon-sm rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-1" data-category="custom">
+                        <div class="relative aspect-square overflow-hidden bg-cyber-black/80 flex flex-col items-center justify-center p-6 text-center">
+                            <!-- High-Tech Animated Background Glow -->
+                            <div class="absolute inset-0 bg-cover bg-center opacity-5 group-hover:opacity-10 transition-opacity duration-500" style="background-image: url('https://i.postimg.cc/wBLKNb3F/ae55923b-7d74-4cab-a435-91349ebeaeb4.jpg'); filter: blur(2px);"></div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-cyber-black via-cyber-purple/5 to-transparent"></div>
+                            
+                            <!-- Visual Play Setup -->
+                            <div class="relative z-10 space-y-4">
+                                <div class="w-16 h-16 rounded-full border border-cyber-purple/40 bg-cyber-black/80 flex items-center justify-center mx-auto group-hover:scale-110 group-hover:border-cyber-purple group-hover:shadow-neon-sm transition-all duration-300">
+                                    <i class="fa-solid fa-play text-xl text-cyber-purple ml-1 animate-pulse"></i>
+                                </div>
+                                <span class="inline-block px-4 py-1.5 text-xs font-extrabold tracking-widest text-cyber-purple border border-cyber-purple/30 bg-cyber-purple/10 uppercase rounded">
+                                    PLAY NOW
+                                </span>
+                            </div>
+                        </div>
+                        <div class="p-6 relative z-10 bg-cyber-black/40 border-t border-cyber-purple/10">
+                            <span class="text-xs font-bold text-cyber-purple uppercase tracking-wider">Custom Avatars</span>
+                            <h3 class="text-lg font-bold text-white mt-1">Techno-Organic Beast</h3>
+                            <p class="text-gray-400 text-sm mt-2 leading-relaxed">Launch interactive file rendering direct on Google Drive to analyze skeleton structures.</p>
+                        </div>
+                    </a>
+
+                    <!-- Item 6 (Google Drive Redirect with custom Visual and Play Button) -->
+                    <a href="https://drive.google.com/file/d/1WBNJJMD60pd6sPjgtSYRDOVU8_KH8L1y/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="portfolio-item block group bg-cyber-accent/40 border border-cyber-purple/20 hover:border-cyber-purple shadow-[inset_0_0_20px_rgba(168,85,247,0.05)] hover:shadow-neon-sm rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-1" data-category="adult">
+                        <div class="relative aspect-square overflow-hidden bg-cyber-black/80 flex flex-col items-center justify-center p-6 text-center">
+                            <!-- High-Tech Animated Background Glow -->
+                            <div class="absolute inset-0 bg-cover bg-center opacity-5 group-hover:opacity-10 transition-opacity duration-500" style="background-image: url('https://i.postimg.cc/wBLKNb3F/ae55923b-7d74-4cab-a435-91349ebeaeb4.jpg'); filter: blur(2px);"></div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-cyber-black via-cyber-purple/5 to-transparent"></div>
+                            
+                            <!-- Visual Play Setup -->
+                            <div class="relative z-10 space-y-4">
+                                <div class="w-16 h-16 rounded-full border border-cyber-purple/40 bg-cyber-black/80 flex items-center justify-center mx-auto group-hover:scale-110 group-hover:border-cyber-purple group-hover:shadow-neon-sm transition-all duration-300">
+                                    <i class="fa-solid fa-play text-xl text-cyber-purple ml-1 animate-pulse"></i>
+                                </div>
+                                <span class="inline-block px-4 py-1.5 text-xs font-extrabold tracking-widest text-cyber-purple border border-cyber-purple/30 bg-cyber-purple/10 uppercase rounded">
+                                    PLAY NOW
+                                </span>
+                            </div>
+                        </div>
+                        <div class="p-6 relative z-10 bg-cyber-black/40 border-t border-cyber-purple/10">
+                            <span class="text-xs font-bold text-cyber-purple uppercase tracking-wider">18+ Projects</span>
+                            <h3 class="text-lg font-bold text-white mt-1">DPS Cyber Dreadnought</h3>
+                            <p class="text-gray-400 text-sm mt-2 leading-relaxed">Launch interactive file rendering direct on Google Drive to examine bone armatures.</p>
+                        </div>
+                    </a>
+
+                    <!-- Item 7 (New Item: 3-Image Smooth Cycling Hover Sequence) -->
+                    <a href="https://postimg.cc/N52TjR6R" target="_blank" rel="noopener noreferrer" class="portfolio-item block group bg-cyber-accent/30 border border-cyber-purple/10 hover:border-cyber-purple/50 rounded-xl overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-neon-sm" data-category="custom">
+                        <div class="relative aspect-square overflow-hidden bg-cyber-accent">
+                            <!-- Image 1 -->
+                            <img src="https://i.postimg.cc/N52TjR6R/Screenshot-2026-04-27-141120.png" alt="Tactical Mecha Front" class="portfolio-7-img-1 absolute inset-0 w-full h-full object-cover object-center transition-all duration-500 ease-in-out group-hover:scale-105">
+                            <!-- Image 2 -->
+                            <img src="https://i.postimg.cc/z3cKNxgH/Screenshot-2026-04-27-141134.png" alt="Tactical Mecha Back" class="portfolio-7-img-2 absolute inset-0 w-full h-full object-cover object-center transition-all duration-500 ease-in-out">
+                            <!-- Image 3 -->
+                            <img src="https://i.postimg.cc/ZCXKYfVq/Screenshot-2026-06-19-143748.png" alt="Tactical Mecha In-Game Pose" class="portfolio-7-img-3 absolute inset-0 w-full h-full object-cover object-center transition-all duration-500 ease-in-out">
+                            
+                            <div class="absolute top-4 right-4 bg-cyber-black/80 backdrop-blur-md w-10 h-10 rounded-full flex items-center justify-center border border-cyber-purple/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <i class="fa-solid fa-up-right-from-square text-cyber-purple text-xs"></i>
+                            </div>
+                        </div>
+                        <div class="p-6 relative z-10 bg-cyber-accent/30">
+                            <span class="text-xs font-bold text-cyber-purple uppercase tracking-wider">Custom Avatars</span>
+                            <h3 class="text-lg font-bold text-white mt-1">Tactical Mecha Operative</h3>
+                            <p class="text-gray-400 text-sm mt-2 leading-relaxed">Multi-perspective showcase displaying highly intricate mechanical panel modeling and body tracking structures.</p>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- BUYER REVIEWS -->
+        <section id="reviews" class="py-20 bg-cyber-darkGray/40 border-y border-cyber-purple/10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Section Header -->
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white uppercase font-heading">
+                        Client <span class="text-cyber-purple">Feedback</span>
+                    </h2>
+                    <div class="w-20 h-1 bg-cyber-purple mx-auto mt-4 rounded-full"></div>
+                    <p class="text-gray-400 mt-4 text-sm sm:text-base">
+                        Read through verified reviews provided by satisfied clients who commissioned custom setups.
+                    </p>
+                </div>
+
+                <!-- Review Cards Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Review 1 -->
+                    <div class="bg-cyber-accent/30 border border-cyber-purple/10 p-8 rounded-xl flex flex-col justify-between hover:border-cyber-purple/35 transition-all">
+                        <div>
+                            <!-- Star Rating -->
+                            <div class="flex text-amber-500 gap-1 mb-4 text-sm">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-gray-300 text-sm leading-relaxed italic mb-6">
+                                "Absolutely amazing work. The avatar came out even better than my reference sheet. Communication was excellent and every update was clear. Would commission again without hesitation."
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-3 pt-4 border-t border-cyber-purple/10">
+                            <div class="w-10 h-10 rounded-full bg-cyber-purple/20 flex items-center justify-center text-cyber-lightPurple font-semibold text-sm">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-white">@CyberWolfVR</h4>
+                                <span class="text-xs text-cyber-purple font-medium">Verified Commission</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review 2 -->
+                    <div class="bg-cyber-accent/30 border border-cyber-purple/10 p-8 rounded-xl flex flex-col justify-between hover:border-cyber-purple/35 transition-all">
+                        <div>
+                            <div class="flex text-amber-500 gap-1 mb-4 text-sm">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-gray-300 text-sm leading-relaxed italic mb-6">
+                                "¡Increíble trabalho! El avatar quedó perfecto y todos los detalles que pedí fueron incluidos. Muy profesional y rápido."
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-3 pt-4 border-t border-cyber-purple/10">
+                            <div class="w-10 h-10 rounded-full bg-cyber-purple/20 flex items-center justify-center text-cyber-lightPurple font-semibold text-sm">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-white">@LunaNeko</h4>
+                                <span class="text-xs text-cyber-purple font-medium">Verified Commission</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review 3 -->
+                    <div class="bg-cyber-accent/30 border border-cyber-purple/10 p-8 rounded-xl flex flex-col justify-between hover:border-cyber-purple/35 transition-all">
+                        <div>
+                            <div class="flex text-amber-500 gap-1 mb-4 text-sm">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-gray-300 text-sm leading-relaxed italic mb-6">
+                                "Franchement, je suis impressionné. Les textures sont magnifiques et les PhysBones fonctionnent parfaitement. Merci beaucoup !"
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-3 pt-4 border-t border-cyber-purple/10">
+                            <div class="w-10 h-10 rounded-full bg-cyber-purple/20 flex items-center justify-center text-cyber-lightPurple font-semibold text-sm">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-white">@Kitsune.exe</h4>
+                                <span class="text-xs text-cyber-purple font-medium">Verified Commission</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review 4 -->
+                    <div class="bg-cyber-accent/30 border border-cyber-purple/10 p-8 rounded-xl flex flex-col justify-between hover:border-cyber-purple/35 transition-all">
+                        <div>
+                            <div class="flex text-amber-500 gap-1 mb-4 text-sm">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-gray-300 text-sm leading-relaxed italic mb-6">
+                                "Die Qualität ist unglaublich. Alles war sauber eingerichtet und direkt bereit für VRChat. Definitiv empfehlenswert."
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-3 pt-4 border-t border-cyber-purple/10">
+                            <div class="w-10 h-10 rounded-full bg-cyber-purple/20 flex items-center justify-center text-cyber-lightPurple font-semibold text-sm">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-white">@AstraNovaVR</h4>
+                                <span class="text-xs text-cyber-purple font-medium">Verified Commission</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review 5 -->
+                    <div class="bg-cyber-accent/30 border border-cyber-purple/10 p-8 rounded-xl flex flex-col justify-between hover:border-cyber-purple/35 transition-all">
+                        <div>
+                            <div class="flex text-amber-500 gap-1 mb-4 text-sm">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-gray-300 text-sm leading-relaxed italic mb-6">
+                                "本当に素晴らしい仕上がりでした！細かい部分まで丁寧に作り込まれていて、期待以上のアバターになりました。"
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-3 pt-4 border-t border-cyber-purple/10">
+                            <div class="w-10 h-10 rounded-full bg-cyber-purple/20 flex items-center justify-center text-cyber-lightPurple font-semibold text-sm">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-white">@YukiDreams</h4>
+                                <span class="text-xs text-cyber-purple font-medium">Verified Commission</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Review 6 -->
+                    <div class="bg-cyber-accent/30 border border-cyber-purple/10 p-8 rounded-xl flex flex-col justify-between hover:border-cyber-purple/35 transition-all">
+                        <div>
+                            <div class="flex text-amber-500 gap-1 mb-4 text-sm">
+                                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            </div>
+                            <p class="text-gray-300 text-sm leading-relaxed italic mb-6">
+                                "Muito obrigado! O avatar ficou exatamente como eu imaginava. Ótima comunicação e excelente qualidade."
+                            </p>
+                        </div>
+                        <div class="flex items-center gap-3 pt-4 border-t border-cyber-purple/10">
+                            <div class="w-10 h-10 rounded-full bg-cyber-purple/20 flex items-center justify-center text-cyber-lightPurple font-semibold text-sm">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-white">@ShadowByte</h4>
+                                <span class="text-xs text-cyber-purple font-medium">Verified Commission</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="about" class="py-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <!-- Portrait Visual (Cols 1-5) -->
+                    <div class="lg:col-span-5 flex justify-center order-last lg:order-first">
+                        <div class="relative w-72 h-72 sm:w-96 sm:h-96 lg:w-full lg:h-[450px] rounded-2xl overflow-hidden shadow-neon-sm border border-cyber-purple/30 bg-cyber-accent">
+                            <img src="https://i.postimg.cc/wBLKNb3F/ae55923b-7d74-4cab-a435-91349ebeaeb4.jpg" alt="About Artofharbeeby" class="w-full h-full object-cover object-center">
+                            <div class="absolute inset-0 bg-gradient-to-t from-cyber-black via-transparent to-transparent opacity-60"></div>
+                        </div>
+                    </div>
+
+                    <!-- Text Content (Cols 6-12) -->
+                    <div class="lg:col-span-7 space-y-6">
+                        <span class="text-xs font-bold text-cyber-purple tracking-widest uppercase block">The Creator Behind the Screen</span>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white uppercase font-heading">
+                            About Artofharbeeby
+                        </h2>
+                        <div class="w-20 h-1 bg-cyber-purple rounded-full"></div>
+                        
+                        <div class="text-gray-300 space-y-4 leading-relaxed text-sm sm:text-base">
+                            <p>
+                                Professional VRChat avatar creator specializing in custom avatars, avatar edits, retextures, rigging and VRChat-ready setups.
+                            </p>
+                            <p>
+                                Focused on creating unique characters while maintaining quality, communication and customer satisfaction throughout the process.
+                            </p>
+                            <p>
+                                Utilizing tools like Blender, Substance Painter, and Unity, I strive to turn complex concepts into performant, striking virtual avatars. Every project receives dedicated work to secure standard compatibility requirements and beautiful aesthetics.
+                            </p>
+                        </div>
+
+                        <!-- Highlights -->
+                        <div class="grid grid-cols-2 gap-4 pt-4">
+                            <div class="bg-cyber-accent/20 border border-cyber-purple/10 p-4 rounded-lg">
+                                <span class="text-xs text-cyber-purple font-semibold uppercase">Primary Platforms</span>
+                                <h4 class="text-white font-bold text-sm sm:text-base mt-1">VRChat (PC &amp; Quest)</h4>
+                            </div>
+                            <div class="bg-cyber-accent/20 border border-cyber-purple/10 p-4 rounded-lg">
+                                <span class="text-xs text-cyber-purple font-semibold uppercase">Tool Stack</span>
+                                <h4 class="text-white font-bold text-sm sm:text-base mt-1">Blender / Substance / Unity</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- TERMS & CONDITIONS SECTION -->
+        <section id="terms" class="py-20 bg-cyber-darkGray/40 border-y border-cyber-purple/10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Section Header -->
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white uppercase font-heading">
+                        Terms of <span class="text-cyber-purple">Service</span>
+                    </h2>
+                    <div class="w-20 h-1 bg-cyber-purple mx-auto mt-4 rounded-full"></div>
+                    <p class="text-gray-400 mt-4 text-sm sm:text-base">
+                        Please review these general requirements, processes, and rules before placing a request.
+                    </p>
+                </div>
+
+                <!-- Terms Columns Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <!-- 1. Payment -->
+                    <div class="bg-cyber-accent/20 border border-cyber-purple/10 p-8 rounded-xl space-y-4">
+                        <div class="flex items-center gap-3">
+                            <span class="w-8 h-8 rounded-lg bg-cyber-purple/10 border border-cyber-purple/30 text-cyber-lightPurple flex items-center justify-center font-bold text-sm">1</span>
+                            <h3 class="text-lg font-bold text-white font-heading">PAYMENT</h3>
+                        </div>
+                        <ul class="space-y-2 text-sm text-gray-400 list-disc list-inside">
+                            <li>Half payment upfront.</li>
+                            <li>Accepted payment methods:
+                                <ul class="pl-5 mt-1 list-circle space-y-1">
+                                    <li>PayPal</li>
+                                    <li>Cryptocurrency</li>
+                                    <li>Bank Transfer</li>
+                                    <li>Ko-fi</li>
+                                </ul>
+                            </li>
+                            <li>Remaining payment completed before final delivery.</li>
+                            <li>Refund policy depends on project progress.</li>
+                        </ul>
+                    </div>
+
+                    <!-- 2. Requirements -->
+                    <div class="bg-cyber-accent/20 border border-cyber-purple/10 p-8 rounded-xl space-y-4">
+                        <div class="flex items-center gap-3">
+                            <span class="w-8 h-8 rounded-lg bg-cyber-purple/10 border border-cyber-purple/30 text-cyber-lightPurple flex items-center justify-center font-bold text-sm">2</span>
+                            <h3 class="text-lg font-bold text-white font-heading">REQUIREMENTS</h3>
+                        </div>
+                        <ul class="space-y-2 text-sm text-gray-400 list-disc list-inside">
+                            <li>Clear references.</li>
+                            <li>Features/details wanted.</li>
+                            <li>PC or Quest specification.</li>
+                            <li>Fursona references if applicable.</li>
+                        </ul>
+                    </div>
+
+                    <!-- 3. Process -->
+                    <div class="bg-cyber-accent/20 border border-cyber-purple/10 p-8 rounded-xl space-y-4">
+                        <div class="flex items-center gap-3">
+                            <span class="w-8 h-8 rounded-lg bg-cyber-purple/10 border border-cyber-purple/30 text-cyber-lightPurple flex items-center justify-center font-bold text-sm">3</span>
+                            <h3 class="text-lg font-bold text-white font-heading">PROCESS</h3>
+                        </div>
+                        <ul class="space-y-2 text-sm text-gray-400 list-disc list-inside">
+                            <li>Progress updates shown during work.</li>
+                            <li>Revisions allowed with valid reasons.</li>
+                            <li>Major late-stage changes may cost extra.</li>
+                            <li>Completion time depends on queue and complexity.</li>
+                        </ul>
+                    </div>
+
+                    <!-- 4. What You Get -->
+                    <div class="bg-cyber-accent/20 border border-cyber-purple/10 p-8 rounded-xl space-y-4 lg:col-span-1">
+                        <div class="flex items-center gap-3">
+                            <span class="w-8 h-8 rounded-lg bg-cyber-purple/10 border border-cyber-purple/30 text-cyber-lightPurple flex items-center justify-center font-bold text-sm">4</span>
+                            <h3 class="text-lg font-bold text-white font-heading">WHAT YOU GET</h3>
+                        </div>
+                        <ul class="space-y-2 text-sm text-gray-400 list-disc list-inside">
+                            <li>Final files.</li>
+                            <li>VRChat upload assistance if needed.</li>
+                        </ul>
+                    </div>
+
+                    <!-- 5. Terms of Service -->
+                    <div class="bg-cyber-accent/20 border border-cyber-purple/10 p-8 rounded-xl space-y-4 md:col-span-2">
+                        <div class="flex items-center gap-3">
+                            <span class="w-8 h-8 rounded-lg bg-cyber-purple/10 border border-cyber-purple/30 text-cyber-lightPurple flex items-center justify-center font-bold text-sm">5</span>
+                            <h3 class="text-lg font-bold text-white font-heading">TERMS OF SERVICE</h3>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2 text-sm text-gray-400">
+                            <ul class="space-y-2 list-disc list-inside">
+                                <li>I may decline commissions.</li>
+                                <li>No chargebacks.</li>
+                                <li>No harassment.</li>
+                            </ul>
+                            <ul class="space-y-2 list-disc list-inside">
+                                <li>No resale or redistribution of my work.</li>
+                                <li>Commercial use must be discussed first.</li>
+                                <li>Unauthorized or leaked assets are not accepted.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ SECTION -->
+        <section id="faq" class="py-20">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Section Header -->
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white uppercase font-heading">
+                        Frequently Asked <span class="text-cyber-purple">Questions</span>
+                    </h2>
+                    <div class="w-20 h-1 bg-cyber-purple mx-auto mt-4 rounded-full"></div>
+                </div>
+
+                <!-- FAQ Accordion -->
+                <div class="space-y-4">
+                    
+                    <!-- FAQ 1 -->
+                    <div class="border border-cyber-purple/20 bg-cyber-accent/20 rounded-lg overflow-hidden transition-all duration-300">
+                        <button class="faq-toggle flex justify-between items-center w-full p-6 text-left focus:outline-none">
+                            <span class="font-bold text-white text-base sm:text-lg">Do you create avatars from scratch?</span>
+                            <span class="faq-icon text-cyber-purple transition-transform duration-300"><i class="fa-solid fa-plus"></i></span>
+                        </button>
+                        <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                            <p class="p-6 pt-0 text-sm sm:text-base text-gray-400 border-t border-cyber-purple/10 leading-relaxed">
+                                Yes, I offer full custom avatar creation tailored to your design preferences, character sheets, and chosen optimization level.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 2 -->
+                    <div class="border border-cyber-purple/20 bg-cyber-accent/20 rounded-lg overflow-hidden transition-all duration-300">
+                        <button class="faq-toggle flex justify-between items-center w-full p-6 text-left focus:outline-none">
+                            <span class="font-bold text-white text-base sm:text-lg">Do you offer avatar edits?</span>
+                            <span class="faq-icon text-cyber-purple transition-transform duration-300"><i class="fa-solid fa-plus"></i></span>
+                        </button>
+                        <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                            <p class="p-6 pt-0 text-sm sm:text-base text-gray-400 border-t border-cyber-purple/10 leading-relaxed">
+                                Yes, I offer clothing attachments, custom rigging configurations, asset swaps, texture alterations, and target format optimizations for commercially licensed avatars.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 3 -->
+                    <div class="border border-cyber-purple/20 bg-cyber-accent/20 rounded-lg overflow-hidden transition-all duration-300">
+                        <button class="faq-toggle flex justify-between items-center w-full p-6 text-left focus:outline-none">
+                            <span class="font-bold text-white text-base sm:text-lg">Do you provide rigging?</span>
+                            <span class="faq-icon text-cyber-purple transition-transform duration-300"><i class="fa-solid fa-plus"></i></span>
+                        </button>
+                        <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                            <p class="p-6 pt-0 text-sm sm:text-base text-gray-400 border-t border-cyber-purple/10 leading-relaxed">
+                                Yes. I handle skeleton assignments, bone weighting, and full PhysBones setups to support responsive movements for dynamic assets in VRChat.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 4 -->
+                    <div class="border border-cyber-purple/20 bg-cyber-accent/20 rounded-lg overflow-hidden transition-all duration-300">
+                        <button class="faq-toggle flex justify-between items-center w-full p-6 text-left focus:outline-none">
+                            <span class="font-bold text-white text-base sm:text-lg">Do you offer 18+ features?</span>
+                            <span class="faq-icon text-cyber-purple transition-transform duration-300"><i class="fa-solid fa-plus"></i></span>
+                        </button>
+                        <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                            <p class="p-6 pt-0 text-sm sm:text-base text-gray-400 border-t border-cyber-purple/10 leading-relaxed">
+                                Yes. Specialized configurations and adult-content features are available. Note that I strictly perform this work for clients aged 18 and older.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 5 -->
+                    <div class="border border-cyber-purple/20 bg-cyber-accent/20 rounded-lg overflow-hidden transition-all duration-300">
+                        <button class="faq-toggle flex justify-between items-center w-full p-6 text-left focus:outline-none">
+                            <span class="font-bold text-white text-base sm:text-lg">What references do you need?</span>
+                            <span class="faq-icon text-cyber-purple transition-transform duration-300"><i class="fa-solid fa-plus"></i></span>
+                        </button>
+                        <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                            <p class="p-6 pt-0 text-sm sm:text-base text-gray-400 border-t border-cyber-purple/10 leading-relaxed">
+                                Having a full 2D model reference sheet is best. Clear orthographic angles (front/back), detail callouts, or clear written lists with reference imagery are accepted.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 6 -->
+                    <div class="border border-cyber-purple/20 bg-cyber-accent/20 rounded-lg overflow-hidden transition-all duration-300">
+                        <button class="faq-toggle flex justify-between items-center w-full p-6 text-left focus:outline-none">
+                            <span class="font-bold text-white text-base sm:text-lg">How do I start a commission?</span>
+                            <span class="faq-icon text-cyber-purple transition-transform duration-300"><i class="fa-solid fa-plus"></i></span>
+                        </button>
+                        <div class="faq-content max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
+                            <p class="p-6 pt-0 text-sm sm:text-base text-gray-400 border-t border-cyber-purple/10 leading-relaxed">
+                                Please send an email directly or send an inquiry via the links below to request availability. Once accepted, we will finalize design parameters.
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="py-20 bg-cyber-darkGray/40 border-t border-cyber-purple/10">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Section Header -->
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white uppercase font-heading">
+                        Get In <span class="text-cyber-purple">Touch</span>
+                    </h2>
+                    <div class="w-20 h-1 bg-cyber-purple mx-auto mt-4 rounded-full"></div>
+                    <p class="text-gray-400 mt-4 text-sm sm:text-base">
+                        Select your preferred platform below to start discussing your project.
+                    </p>
+                </div>
+
+                <div class="max-w-4xl mx-auto space-y-8">
+                    <!-- Main CTA Request Commission -->
+                    <div class="glow-border bg-cyber-accent/40 p-8 rounded-2xl border border-cyber-purple/20 text-center space-y-6">
+                        <h3 class="text-2xl font-bold text-white font-heading">Ready to bring your avatar to life?</h3>
+                        <p class="text-gray-300 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
+                            Submit a formal commission request via email or get in touch on Twitch and Twitter. I will review your files, confirm queue details, and deliver a transparent project estimate.
+                        </p>
+                        <div>
+                            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=Artofharbeeby@gmail.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 px-8 py-4 bg-cyber-purple hover:bg-cyber-darkPurple text-white font-bold rounded-lg shadow-neon-sm hover:shadow-neon-md transition-all duration-300">
+                                <i class="fa-solid fa-envelope text-xl"></i> Email Me Now
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Alternate Channels Grid -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        
+                        <!-- Twitch -->
+                        <a href="https://www.twitch.tv/Artofharbeeby" target="_blank" rel="noopener noreferrer" class="bg-cyber-accent/20 border border-cyber-purple/10 hover:border-cyber-purple/50 p-5 rounded-xl text-center transition-all duration-300 flex flex-col items-center gap-2 group">
+                            <i class="fa-brands fa-twitch text-2xl text-gray-400 group-hover:text-cyber-purple transition-colors"></i>
+                            <span class="text-xs font-bold text-white tracking-wide">Twitch</span>
+                        </a>
+
+                        <!-- Twitter/X -->
+                        <a href="https://x.com/harbeebyy0" target="_blank" rel="noopener noreferrer" class="bg-cyber-accent/20 border border-cyber-purple/10 hover:border-cyber-purple/50 p-5 rounded-xl text-center transition-all duration-300 flex flex-col items-center gap-2 group">
+                            <i class="fa-brands fa-x-twitter text-2xl text-gray-400 group-hover:text-cyber-purple transition-colors"></i>
+                            <span class="text-xs font-bold text-white tracking-wide">Twitter / X</span>
+                        </a>
+
+                        <!-- Email -->
+                        <a href="https://mail.google.com/mail/?view=cm&fs=1&to=Artofharbeeby@gmail.com" target="_blank" rel="noopener noreferrer" class="bg-cyber-accent/20 border border-cyber-purple/10 hover:border-cyber-purple/50 p-5 rounded-xl text-center transition-all duration-300 flex flex-col items-center gap-2 group">
+                            <i class="fa-solid fa-envelope text-2xl text-gray-400 group-hover:text-cyber-purple transition-colors"></i>
+                            <span class="text-xs font-bold text-white tracking-wide">Artofharbeeby@gmail.com</span>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="relative z-10 bg-cyber-black border-t border-cyber-purple/20 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <!-- Footer Logo -->
+                <div class="text-center md:text-left">
+                    <span class="text-xl font-bold tracking-wider text-white font-heading">
+                        ART<span class="text-cyber-purple">OF</span>HARBEEBY
+                    </span>
+                    <p class="text-xs text-gray-500 mt-1">Premium VRChat Avatar Development</p>
+                </div>
+
+                <!-- Socials Links -->
+                <div class="flex items-center gap-6 text-gray-400 text-lg">
+                    <a href="https://www.twitch.tv/Artofharbeeby" target="_blank" rel="noopener noreferrer" class="hover:text-cyber-purple transition-colors"><i class="fa-brands fa-twitch"></i></a>
+                    <a href="https://x.com/harbeebyy0" target="_blank" rel="noopener noreferrer" class="hover:text-cyber-purple transition-colors"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=Artofharbeeby@gmail.com" target="_blank" rel="noopener noreferrer" class="hover:text-cyber-purple transition-colors"><i class="fa-solid fa-envelope"></i></a>
+                </div>
+
+                <!-- Copyright -->
+                <div class="text-center md:text-right text-xs text-gray-500">
+                    <p>&copy; Artofharbeeby. All Rights Reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT -->
+    <script>
+        // Mobile Navigation Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIconOpen = document.getElementById('menu-icon-open');
+        const menuIconClose = document.getElementById('menu-icon-close');
+
+        mobileMenuButton.addEventListener('click', () => {
+            const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+            mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+            mobileMenu.classList.toggle('hidden');
+            menuIconOpen.classList.toggle('hidden');
+            menuIconClose.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on clicking any navigation link
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIconOpen.classList.remove('hidden');
+                menuIconClose.classList.add('hidden');
+                mobileMenuButton.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+        // Portfolio Filtering Interaction
+        const filterButtons = document.querySelectorAll('.portfolio-filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class styling from all buttons
+                filterButtons.forEach(btn => {
+                    btn.classList.remove('bg-cyber-purple', 'text-white');
+                    btn.classList.add('bg-cyber-accent', 'text-gray-300');
+                });
+                
+                // Add active class styling to clicked button
+                button.classList.add('bg-cyber-purple', 'text-white');
+                button.classList.remove('bg-cyber-accent', 'text-gray-300');
+
+                const selectedCategory = button.getAttribute('data-category');
+
+                portfolioItems.forEach(item => {
+                    if (selectedCategory === 'all' || item.getAttribute('data-category') === selectedCategory) {
+                        item.classList.remove('hidden');
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'translateY(0)';
+                        }, 50);
+                    } else {
+                        item.style.opacity = '0';
+                        item.style.transform = 'translateY(10px)';
+                        setTimeout(() => {
+                            item.classList.add('hidden');
+                        }, 200);
+                    }
+                });
+            });
+        });
+
+        // Accordion (FAQ) Configuration
+        const faqToggles = document.querySelectorAll('.faq-toggle');
+
+        faqToggles.forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const content = toggle.nextElementSibling;
+                const icon = toggle.querySelector('.faq-icon');
+
+                // Toggle Active Classes
+                if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+                    content.style.maxHeight = '0px';
+                    icon.style.transform = 'rotate(0deg)';
+                } else {
+                    // Close all other panels (optional, but clean)
+                    document.querySelectorAll('.faq-content').forEach(el => el.style.maxHeight = '0px');
+                    document.querySelectorAll('.faq-icon').forEach(el => el.style.transform = 'rotate(0deg)');
+
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                    icon.style.transform = 'rotate(45deg)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
